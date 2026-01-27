@@ -1,70 +1,63 @@
-import type { Metadata } from "next"
+"use client"
 
-export const metadata: Metadata = {
-  title: "Your Name | Personal Page",
-  description: "A minimalist personal page",
-}
+import { useEffect, useState } from "react"
 
 export default function Home() {
+  const [mounted, setMounted] = useState(false)
+
+  useEffect(() => {
+    setMounted(true)
+  }, [])
+
   return (
-    <main className="flex min-h-screen items-center justify-center bg-zinc-800 p-4">
-      <div className="w-full max-w-2xl rounded-none bg-[#f8f7e9] p-12 shadow-lg">
-        <header className="mb-6">
-          <p className="text-sm text-zinc-700">Your Name</p>
-          <p className="text-sm text-zinc-700">Your City, State, Country</p>
-        </header>
+    <main className="relative flex min-h-screen flex-col items-center justify-center overflow-hidden bg-[#0a0a0a]">
+      {/* Subtle gradient overlay */}
+      <div className="pointer-events-none absolute inset-0 bg-gradient-to-b from-transparent via-transparent to-black/20" />
 
-        <h1 className="mb-6 text-2xl font-semibold text-zinc-800">It&apos;s only a page.</h1>
+      {/* Animated grain texture overlay */}
+      <div className="pointer-events-none absolute inset-0 opacity-[0.015] grain" />
 
-        <div className="space-y-4 text-sm leading-relaxed text-zinc-700">
-          <p>Dear visitor,</p>
+      {/* Main content */}
+      <div className={`relative z-10 flex flex-col items-center transition-all duration-1000 ease-out ${mounted ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-4'}`}>
+        {/* Logo / Wordmark */}
+        <h1 className="text-[clamp(3rem,15vw,12rem)] font-extralight tracking-[0.3em] text-white/90 select-none">
+          SURF
+        </h1>
 
-          <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Sed do eiusmod tempor incididunt ut labore et
-            dolore magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris.
+        {/* Subtle tagline */}
+        <div className={`mt-8 transition-all duration-1000 delay-500 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+          <p className="text-[11px] font-light tracking-[0.4em] text-white/30 uppercase">
+            Private Investment Office
           </p>
-
-          <p>
-            Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla pariatur.
-            Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-            laborum.
-          </p>
-
-          <p>
-            Sed ut perspiciatis unde omnis iste natus error sit voluptatem accusantium doloremque laudantium, totam rem
-            aperiam, eaque ipsa quae ab illo inventore veritatis et quasi architecto beatae vitae dicta sunt explicabo.
-          </p>
-
-          <p>
-            Nemo enim ipsam voluptatem quia voluptas sit aspernatur aut odit aut fugit, sed quia consequuntur magni
-            dolores eos qui ratione voluptatem sequi nesciunt. Neque porro quisquam est, qui dolorem ipsum quia dolor
-            sit amet.
-          </p>
-
-          <p>
-            At vero eos et accusamus et iusto odio dignissimos ducimus qui blanditiis praesentium voluptatum deleniti
-            atque corrupti quos dolores et quas molestias excepturi sint occaecati cupiditate non provident.
-          </p>
-
-          <p>
-            Similique sunt in culpa qui officia deserunt mollitia animi, id est laborum et dolorum fuga. Et harum quidem
-            rerum facilis est et expedita distinctio.
-          </p>
-
-          <p>
-            Nam libero tempore, cum soluta nobis est eligendi optio cumque nihil impedit quo minus id quod maxime
-            placeat facere possimus, omnis voluptas assumenda est, omnis dolor repellendus.
-          </p>
-
-          <p>
-            Temporibus autem quibusdam et aut officiis debitis aut rerum necessitatibus saepe eveniet ut et voluptates
-            repudiandae sint et molestiae non recusandae.
-          </p>
-
-          <p>Even when it&apos;s only a page.</p>
         </div>
 
-        <footer className="mt-8 border-t border-zinc-300 pt-4 text-xs text-zinc-500">{new Date().getFullYear()}</footer>
+        {/* Minimal divider */}
+        <div className={`mt-16 h-px w-12 bg-white/10 transition-all duration-1000 delay-700 ${mounted ? 'opacity-100 scale-x-100' : 'opacity-0 scale-x-0'}`} />
+
+        {/* Contact hint */}
+        <div className={`mt-16 transition-all duration-1000 delay-1000 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+          <a
+            href="mailto:hello@surf.xyz"
+            className="group relative text-[10px] font-light tracking-[0.3em] text-white/20 uppercase transition-colors duration-500 hover:text-white/50"
+          >
+            <span className="relative">
+              Contact
+              <span className="absolute -bottom-1 left-0 h-px w-0 bg-white/30 transition-all duration-500 group-hover:w-full" />
+            </span>
+          </a>
+        </div>
+      </div>
+
+      {/* Bottom corner subtle branding */}
+      <div className={`absolute bottom-8 right-8 transition-all duration-1000 delay-1200 ${mounted ? 'opacity-100' : 'opacity-0'}`}>
+        <p className="text-[9px] font-light tracking-[0.2em] text-white/10 uppercase">
+          Est. 2025
+        </p>
+      </div>
+
+      {/* Subtle animated accent line */}
+      <div className="absolute bottom-0 left-0 right-0 h-px">
+        <div className={`h-full bg-gradient-to-r from-transparent via-white/5 to-transparent transition-all duration-2000 ${mounted ? 'opacity-100' : 'opacity-0'}`} />
       </div>
     </main>
   )

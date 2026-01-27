@@ -13,7 +13,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <body className={inter.className}>
-        <ThemeProvider attribute="class" defaultTheme="light" enableSystem disableTransitionOnChange>
+        <ThemeProvider attribute="class" defaultTheme="dark" enableSystem disableTransitionOnChange>
           {children}
         </ThemeProvider>
       </body>
@@ -22,5 +22,9 @@ export default function RootLayout({
 }
 
 export const metadata = {
-      generator: 'v0.dev'
-    };
+  title: "SURF",
+  description: "Private Investment Office",
+  icons: {
+    icon: "/favicon.ico",
+  },
+};
